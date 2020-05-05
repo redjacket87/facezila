@@ -98,4 +98,10 @@
   &__notification {
     font-size: $font-size-l;
   }
+
+  &__spinner {
+    @include center-children();
+
+    margin-top: 20px;
+  }
 }

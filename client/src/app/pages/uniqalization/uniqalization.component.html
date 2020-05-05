@@ -62,51 +62,59 @@
 
   </div>
 
-  <form
-    class="uniqalization__submit-form"
-    *ngIf="file && !workInProgress"
-    [formGroup]="form"
-  >
-    <div>
-      <label
-        class="uniqalization__label"
-        for="videoCount">Введите количество копий от 1 до 10
-      </label>
-      <mat-form-field>
-        <input
-          id="videoCount"
-          matInput
-          formControlName="count"
-          type="number"
-        >
-        <mat-error *ngIf="!isFormValid()">
-          Введите количество цифрами от 1 до 10
-        </mat-error>
-      </mat-form-field>
-
-      <label
-        style="margin-left: 40px"
-        class="uniqalization__label"
-        for="archiveName">Введите название скачиваемого архива
-      </label>
-      <mat-form-field>
-        <input
-          id="archiveName"
-          matInput
-          formControlName="archiveName"
-        >
-      </mat-form-field>
-    </div>
-
-    <button
-      mat-flat-button
-      color="accent"
-      [disabled]="!isFormValid()"
-      (click)="submitForm()"
+  <ng-container *ngIf="!showSpinner; else spinner">
+    <form
+      class="uniqalization__submit-form"
+      *ngIf="file && !workInProgress"
+      [formGroup]="form"
     >
-      Уникализировать видео
-    </button>
-  </form>
+      <div>
+        <label
+          class="uniqalization__label"
+          for="videoCount">Введите количество копий от 1 до 10
+        </label>
+        <mat-form-field>
+          <input
+            id="videoCount"
+            matInput
+            formControlName="count"
+            type="number"
+          >
+          <mat-error *ngIf="!isFormValid()">
+            Введите количество цифрами от 1 до 10
+          </mat-error>
+        </mat-form-field>
+
+        <label
+          style="margin-left: 40px"
+          class="uniqalization__label"
+          for="archiveName">Введите название скачиваемого архива
+        </label>
+        <mat-form-field>
+          <input
+            id="archiveName"
+            matInput
+            formControlName="archiveName"
+          >
+        </mat-form-field>
+      </div>
+
+      <button
+        mat-flat-button
+        color="accent"
+        [disabled]="!isFormValid()"
+        (click)="submitForm()"
+      >
+        Уникализировать видео
+      </button>
+    </form>
+  </ng-container>
+
+  <ng-template #spinner>
+    <div class="uniqalization__spinner">
+      <mat-spinner color="primary" [diameter]="50"></mat-spinner>
+    </div>
+  </ng-template>
 
   <p
     class="uniqalization__notification"

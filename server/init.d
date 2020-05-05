@@ -5,7 +5,7 @@
 
 #
 # Check the root directory
-rootdir="~/facezila/server"
+rootdir="/home/ubuntu/facezila/server"
 server="$rootdir/dist/main.js"
 nodejs=${NODEJS-/usr/bin/node}
 

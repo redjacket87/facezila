@@ -27,6 +27,7 @@ export class UniqalizationComponent  {
     archiveName: [''],
     count: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
   });
+  showSpinner = false;
 
   constructor(
     private domSanitizer: DomSanitizer,
@@ -132,11 +133,17 @@ export class UniqalizationComponent  {
   }
 
   submitForm() {
-    this.form.valid && this.uniqalizationService.sendVideo({
+    if (!this.form.valid) {
+      return;
+    }
+
+    this.showSpinner = true;
+    this.uniqalizationService.sendVideo({
       count: this.form?.value?.count,
       data: this.fileData,
       name: this.file.name
     }).subscribe(async (response: CommonHttpResponseType) => {
+      this.showSpinner = false;
       if (response.error || !response?.data?.hash) {
         this.deleteFile();
         alert('Что-то пошло не так попробуйте загрузить файл еще раз.');
@@ -168,6 +175,9 @@ export class UniqalizationComponent  {
         });
 
       }
+    }, (e) => {
+      this.showSpinner = false;
+      alert('Что-то пошло не так. Попробуйте повторить попытку.')
     });
   }
 }
