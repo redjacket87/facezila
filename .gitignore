@@ -1,7 +1,6 @@
 /tmp
 
 # compiled output
-/client/dist
 /servrt/dist
 /client/tmp
 /server/tmp
