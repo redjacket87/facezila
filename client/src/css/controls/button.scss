@@ -1,0 +1,13 @@
+@import "../utils/variables";
+
+button {
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mat-icon-button {
+  .mat-button-focus-overlay {
+    background-color: transparent;
+  }
+}

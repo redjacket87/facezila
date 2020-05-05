@@ -1,0 +1,30 @@
+@import '~@angular/material/theming';
+@import "../theme/theme";
+
+// Тема
+$color-theme-primary: mat-color($theme-primary, 500);
+$color-theme-primary-translucent: rgba($color-theme-primary, 0.5);
+
+$color-theme-accent: mat-color($theme-accent);
+$color-theme-accent-translucent: rgba($color-theme-accent, 0.5);
+
+$color-theme-warn: mat-color($theme-warn);
+$color-theme-warn-translucent: rgba($color-theme-warn, 0.5);
+
+// Текст
+$color-text-primary: #333;
+$color-text-primary-inverse: #fff;
+$color-text-secondary: #a4a4a4;
+
+// Фон
+$color-bg-primary: #fff;
+
+// Размер шрифта
+$font-size-xxxs: 9px;
+$font-size-xxs: 10px;
+$font-size-xs: 12px;
+$font-size-s: 14px;
+$font-size-m: 16px;
+$font-size-l: 18px;
+$font-size-xl: 21px;
+$font-size-xxl: 24px;

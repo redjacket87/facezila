@@ -1,0 +1,17 @@
+/tmp
+
+# compiled output
+/client/dist
+/servrt/dist
+/client/tmp
+/server/tmp
+/client/out-tsc
+/server/out-tsc
+
+
+# dependencies
+/client/node_modules
+/server/node_modules
+
+# IDEs and editors
+/facezila/.idea

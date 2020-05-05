@@ -1,0 +1,18 @@
+@import "../utils/variables";
+
+.hms-scrollbar {
+  &::-webkit-scrollbar {
+    appearance: none;
+    width: 6px;
+    height: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: $color-theme-primary;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+}

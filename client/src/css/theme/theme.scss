@@ -1,0 +1,114 @@
+@import '~@angular/material/theming';
+
+/** Palette generator: http://mcg.mbitson.com/#!?mcgpalette0=%230055a6&themename=mcgtheme */
+$primary: (
+  50: #e0f3f6,
+  100: #b3e0e8,
+  200: #80cbd9,
+  300: #4db6ca,
+  400: #26a7be,
+  500: #0097b3,
+  600: #008fac,
+  700: #0084a3,
+  800: #007a9a,
+  900: #00698b,
+  A100: #b7eaff,
+  A200: #84dbff,
+  A400: #51cdff,
+  A700: #37c5ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$accent: (
+  50 : #e0f6e4,
+  100 : #b3e8bb,
+  200 : #80d98e,
+  300 : #4dca60,
+  400 : #26be3e,
+  500 : #00b31c,
+  600 : #00ac19,
+  700 : #00a314,
+  800 : #009a11,
+  900 : #008b09,
+  A100 : #b7ffb8,
+  A200 : #84ff87,
+  A400 : #51ff55,
+  A700 : #37ff3c,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);;
+
+$warn: (
+  50 : #f6e4e0,
+  100 : #e8bbb3,
+  200 : #d98e80,
+  300 : #ca604d,
+  400 : #be3e26,
+  500 : #b31c00,
+  600 : #ac1900,
+  700 : #a31400,
+  800 : #9a1100,
+  900 : #8b0900,
+  A100 : #ffb8b7,
+  A200 : #ff8784,
+  A400 : #ff5551,
+  A700 : #ff3c37,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #ffffff,
+  )
+);
+
+$theme-primary: mat-palette($primary);
+$theme-accent : mat-palette($accent);
+$theme-warn   : mat-palette($warn);
+
+$theme: mat-light-theme(
+    $theme-primary,
+    $theme-accent,
+    $theme-warn
+);
+
+@include mat-core();
+@include angular-material-theme($theme)

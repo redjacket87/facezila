@@ -1,0 +1,104 @@
+<div class="uniqalization">
+  <div
+    class="uniqalization__upload-container"
+    [class.uniqalization__upload-container_view_unbordered]="file"
+    appDrugNDrop (fileDropped)="onFileDropped($event)"
+  >
+    <ng-container *ngIf="!file; else video">
+      <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
+      <svg-icon-sprite
+        src="upload"
+        width="60px"
+      >
+      </svg-icon-sprite>
+      <h3>Перетащите файл на панель</h3>
+      <h3>или</h3>
+      <button
+        mat-raised-button
+        color="accent"
+      ><label for="fileDropRef">Загрузите файл</label></button>
+    </ng-container>
+
+    <ng-template #video>
+      <video class="uniqalization__video" controls autoplay>
+        <source [src]="videoSource">
+      </video>
+    </ng-template>
+  </div>
+
+  <div
+    *ngIf="file"
+    class="uniqalization__uploaded-file"
+  >
+    <div class="uniqalization__uploaded-file-icon">
+      <svg-icon-sprite
+        src="file"
+        width="40px"
+      >
+      </svg-icon-sprite>
+    </div>
+    <div class="uniqalization__uploaded-file-info">
+      <h4 class="uniqalization__uploaded-file-name">
+        {{ file?.name }}
+      </h4>
+      <p class="uniqalization__uploaded-file-size">
+        {{ formatBytes(file?.size) }}
+      </p>
+      <app-progress [progress]="file?.progress"></app-progress>
+    </div>
+
+    <div class="uniqalization__uploaded-file-delete" (click)="deleteFile()">
+      <button
+        mat-icon-button
+        [disabled]="workInProgress"
+      >
+        <svg-icon-sprite
+          src="delete-file"
+          width="20px"
+        >
+        </svg-icon-sprite>
+      </button>
+    </div>
+
+  </div>
+
+  <form
+    class="uniqalization__submit-form"
+    *ngIf="file && !workInProgress"
+    [formGroup]="form"
+  >
+    <div>
+      <label
+        class="uniqalization__count-label"
+        for="videoCount">Введите количество копий от 1 до 10
+      </label>
+      <mat-form-field>
+        <input
+          id="videoCount"
+          matInput
+          formControlName="count"
+          type="number"
+        >
+        <mat-error *ngIf="!isFormValid()">
+          Введите количество цифрами от 1 до 10
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-flat-button
+      color="accent"
+      [disabled]="!isFormValid()"
+      (click)="submitForm()"
+    >
+      Уникализировать видео
+    </button>
+  </form>
+
+  <p
+    class="uniqalization__notification"
+    *ngIf="workInProgress"
+  >
+    Уникализация в процессе. Это может занять какое-то время. Скачивание архива начнется автоматически.
+  </p>
+</div>
