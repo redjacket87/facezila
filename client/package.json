@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --prod --vendor-chunk --base-href /production/",
+    "build": "ng build --prod --vendor-chunk",
     "test": "ng test",
     "lint": "tsc --noEmit && eslint ./src/**/*.ts --quiet --fix",
     "e2e": "ng e2e",
