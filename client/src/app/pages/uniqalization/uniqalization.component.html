@@ -69,7 +69,7 @@
   >
     <div>
       <label
-        class="uniqalization__count-label"
+        class="uniqalization__label"
         for="videoCount">Введите количество копий от 1 до 10
       </label>
       <mat-form-field>
@@ -82,6 +82,19 @@
         <mat-error *ngIf="!isFormValid()">
           Введите количество цифрами от 1 до 10
         </mat-error>
+      </mat-form-field>
+
+      <label
+        style="margin-left: 40px"
+        class="uniqalization__label"
+        for="archiveName">Введите название скачиваемого архива
+      </label>
+      <mat-form-field>
+        <input
+          id="archiveName"
+          matInput
+          formControlName="archiveName"
+        >
       </mat-form-field>
     </div>
 
@@ -99,6 +112,6 @@
     class="uniqalization__notification"
     *ngIf="workInProgress"
   >
-    Уникализация в процессе. Это может занять какое-то время. Скачивание архива начнется автоматически.
+    Уникализация в процессе. Это может занять какое-то время.
   </p>
 </div>

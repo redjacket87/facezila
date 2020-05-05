@@ -24,6 +24,7 @@ export class UniqalizationComponent  {
   fileReader = new FileReader();
   fileData: string | ArrayBuffer = null;
   form = this.formBuilder.group({
+    archiveName: [''],
     count: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
   });
 
@@ -160,7 +161,8 @@ export class UniqalizationComponent  {
 
       if (checkStatus?.data?.status === Status.Success) {
         this.uniqalizationService.downloadFile(hash).subscribe((response) => {
-          saveAs(response, 'aaaa.zip')
+          const archiveName = this.form?.value?.archiveName;
+          saveAs(response, `${archiveName}.zip`)
           this.workInProgress = false;
           this.uniqalizationService.deleteRecord(hash);
         });
