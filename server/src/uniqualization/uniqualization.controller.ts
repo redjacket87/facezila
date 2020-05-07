@@ -2,13 +2,14 @@ import { Controller, Get, Post, Res, HttpStatus, Req, UseFilters } from '@nestjs
 import { Response, Request } from 'express';
 import { createHash } from 'crypto';
 import * as rimraf from 'rimraf';
+import { existsSync } from 'fs';
+import { noop } from 'rxjs';
 
 import { VideoUniqalizationType } from './uniqalization.types';
 import { InvalidDataErrorResponse } from "../common/http/error/invalid-data-error-response";
 import { HttpExceptionFilter } from '../common/http/http-exeption-filter';
 import { UniqalizationService } from './uniqalization.service';
 import { CommonHttpResponse } from '../common/http/common-http-response';
-import {existsSync} from "fs";
 
 
 @Controller('api/uniqalization')
@@ -65,7 +66,7 @@ export class UniqalizationController {
             const record = await this.uniqalizationService.getRecordByHash(id as string);
 
             if (!record) {
-                rimraf(this.uniqalizationService.getRecordsDir(id as string), () => {});
+                rimraf(this.uniqalizationService.getRecordsDir(id as string), noop);
 
                 return res.status(HttpStatus.NOT_FOUND).json(new CommonHttpResponse({
                     error: {
@@ -79,7 +80,7 @@ export class UniqalizationController {
                 data: record,
             }).response);
         } catch(e) {
-            rimraf(this.uniqalizationService.getRecordsDir(id as string), () => {});
+            rimraf(this.uniqalizationService.getRecordsDir(id as string), noop);
 
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(new CommonHttpResponse({
                 error: {
@@ -100,7 +101,6 @@ export class UniqalizationController {
         if (existsSync(dir)) {
             return res.status(HttpStatus.OK).sendFile(`${dir}/archive${id}.zip`);
         } else {
-            rimraf(this.uniqalizationService.getRecordsDir(id as string), () => {});
             res.status(HttpStatus.NOT_FOUND);
         }
     }
@@ -115,13 +115,6 @@ export class UniqalizationController {
 
             res.status(HttpStatus.OK).end();
         } catch (e) {
-            console.log('!!!!!!!!!!!!!')
-            console.log('!!!!!!!!!!!!!')
-            console.log('!!!!!!!!!!!!!')
-            console.log('!!!!!!!!!!!!!')
-            console.log('!!!!!!!!!!!!!')
-            console.log(e)
-
             res.status(HttpStatus.OK).end();
         }
     }
